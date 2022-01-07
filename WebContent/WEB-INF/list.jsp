@@ -20,6 +20,9 @@ List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 <body>
 
 	<h1>전화번호 리스트 [phonebook2]</h1>
+	
+	<P><a href="/phonebook2/pbc?action=writeForm.jsp">연락처 추가하기</a></p>
+	
 	<p>입력한 정보 내역입니다.</p>
 
 	<%
