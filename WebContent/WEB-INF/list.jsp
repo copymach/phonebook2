@@ -21,10 +21,13 @@ List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 
 	<P>
 		<a href="http://localhost:8088/phonebook2/pbc?action=writeForm">연락처 추가하기(절대경로)</a>
+		<br>
+		<a href="/phonebook2/pbc?action=writeForm">연락처 추가하기(상대경로)</a>
 	</p>
-
+	<p>model2 방식으로 만든 전화번호부</p>
 	<p>입력한 정보 내역입니다.</p>
-
+	<p>최근에 입력한 순서대로 보여줍니다.</p>
+	
 	<%
 	for (int i = 0; i < personList.size(); i++) {
 	%>

@@ -19,7 +19,7 @@ public class PhonebookController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("PhonebookController");
+		System.out.println("PhonebookController 시작");
 
 		String act = request.getParameter("action");
 
@@ -36,6 +36,7 @@ public class PhonebookController extends HttpServlet {
 //			html과 list를 섞어서 표현해야한다.
 //			servlet 으로는 표현이 복잡하다 -> 해결법 jsp를 이용.
 
+//			attribute란 Servlet간 공유하는 객체
 			request.setAttribute("pList", personList);
 //			PrintWriter out = response.getWriter(); out.println("<head>");
 
@@ -70,16 +71,59 @@ public class PhonebookController extends HttpServlet {
 			phoneDao.ContactsInput(personVo);
 
 //			리다이렉트 (지금 상황에서 포워드보다 낫다)
+//			리다이렉트-> 서버-클라 사이클 돌때 
+//			포워드 -> 서버 내 사이클 돌때
 			response.sendRedirect("/phonebook2/pbc?action=list");
 			
-		} else if ("insert".equals(act)) {
-			System.out.println("action=insert");
+			
+			
+		} else if ("updateForm".equals(act)) {
+			System.out.println("action=updateForm");
+			//list 부터 id 식별자를 받아 form에 출력 
+			/*
+//			id 형변환
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+//			숫자로 변경한 id로 대상 식별
+			PersonVo personVo = new PhoneDao().getPerson(id);
+			
+//			Action으로 넘어온 값을 변경시킨후 JSP 페이지로 넘겨주기
+			request.setAttribute("psnVo", personVo);
+			
+//			포워드 
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp");
+			rd.forward(request, response);
+			*/
+			
+			
+		} else if ("update".equals(act)) {
+			System.out.println("update");
+			
+//			파라미터 4개를 꺼내온다
+			String id = request.getParameter("id");
+			String name = request.getParameter("name");
+			String hp = request.getParameter("hp");
+			String company = request.getParameter("company");
+
+//			형변환
+			int personId = Integer.parseInt(request.getParameter(id));
+			
+//			vo로 만든다
+			PersonVo personVo = new PersonVo(personId, name, hp, company);
+			System.out.println(personVo);
+
+//			dao 메모리 올린다
+			PhoneDao phoneDao = new PhoneDao();
+
+//			쿼리 처리
+			phoneDao.ContactsUpdate(personVo);
+			
+//			리다이렉트
+			response.sendRedirect("/phonebook2/pbc?action=list");
+			
 			
 		} else if ("delete".equals(act)) {
 			System.out.println("delete");
-			
-		} else if ("updateForm".equals(act)) {
-			System.out.println("updateForm");
 			
 		} else {
 			System.out.println("파라미터 값 없음");
