@@ -37,8 +37,7 @@ public class PhonebookController extends HttpServlet {
 //			servlet 으로는 표현이 복잡하다 -> 해결법 jsp를 이용.
 
 			request.setAttribute("pList", personList);
-
-//			  PrintWriter out = response.getWriter(); out.println("<head>");
+//			PrintWriter out = response.getWriter(); out.println("<head>");
 
 //			포워드
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
@@ -72,7 +71,10 @@ public class PhonebookController extends HttpServlet {
 
 //			리다이렉트 (지금 상황에서 포워드보다 낫다)
 			response.sendRedirect("/phonebook2/pbc?action=list");
-
+			
+		} else if ("insert".equals(act)) {
+			System.out.println("action=insert");
+			
 		} else if ("delete".equals(act)) {
 			System.out.println("delete");
 			

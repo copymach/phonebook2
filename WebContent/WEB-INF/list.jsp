@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <%@ page import="java.util.List"%>
 <%@ page import="com.javaex.vo.PersonVo"%>
@@ -8,7 +7,6 @@
 //dao에서 가져온게 아님
 List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 %>
-
 
 
 <!DOCTYPE html>
@@ -20,9 +18,11 @@ List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 <body>
 
 	<h1>전화번호 리스트 [phonebook2]</h1>
-	
-	<P><a href="/phonebook2/pbc?action=writeForm.jsp">연락처 추가하기</a></p>
-	
+
+	<P>
+		<a href="http://localhost:8088/phonebook2/pbc?action=writeForm">연락처 추가하기(절대경로)</a>
+	</p>
+
 	<p>입력한 정보 내역입니다.</p>
 
 	<%
@@ -41,12 +41,17 @@ List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 			<td>회사(Company)</td>
 			<td><%=personList.get(i).getCompany()%></td>
 		</tr>
+		<tr>
+			<td><a href=./updateForm.jsp?id=<%=personList.get(i).getPersonId()%>>수정</a></td>
+			<td><a href=./delete.jsp?id=<%=personList.get(i).getPersonId()%>>삭제</a></td>
+		</tr>
 	</table>
 	<br>
 	<%
 	}
 	%>
-
+	<br>
+<a href="http://localhost:8088/phonebook1/writeForm.jsp">전화번호 추가하기</a>
 
 </body>
 </html>

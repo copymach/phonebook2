@@ -255,10 +255,6 @@ public class PhoneDao {
 			query += " from person ";
 			query += " where (name like ? or hp like ? or company like ?) ";
 
-//			select first_name, last_name, salary
-//			from employees
-//			where first_name like 'L%';
-
 			pstmt = conn.prepareStatement(query);
 
 			pstmt.setString(1, "%" + search + "%");
