@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-
-<%@ page import="java.util.List"%>
-<%@ page import="com.javaex.vo.PersonVo"%>
+// ,를 써서 2개를 임포트 할 수 있다.
+<%@ page import="java.util.List , com.javaex.vo.PersonVo"%>
 
 <%
 //dao에서 가져온게 아님
 List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
+
 %>
 
 
@@ -29,7 +29,10 @@ List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 	<p>최근에 입력한 순서대로 보여줍니다.</p>
 	
 	<%
-	for (int i = 0; i < personList.size(); i++) {
+	//for(PersonVo vo : personList){ 향상된 for문
+	for (int i = 0; i < personList.size(); i++) { 
+		PersonVo psnvo = personList.get(i);
+		// 모델2에서 다른 방식 id 받는 방법 
 	%>
 	<table border="1">
 		<tr>
@@ -45,8 +48,10 @@ List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 			<td><%=personList.get(i).getCompany()%></td>
 		</tr>
 		<tr>
-			<td><a href=./updateForm.jsp?id=<%=personList.get(i).getPersonId()%>>수정</a></td>
-			<td><a href=./delete.jsp?id=<%=personList.get(i).getPersonId()%>>삭제</a></td>
+			<td><a href="/phonebook2/pbc?action=updateForm&id=<%=psnvo.getPersonId()%>">수정</a></td>
+			<td><a href=/phonebook2/pbc?action=delete&id=<%=psnvo.getPersonId()%>>삭제</a></td>
+			<%-- <td><a href="/phonebook2/pbc?action=updateForm&id=<%=personList.get(i).getPersonId()%>">수정</a></td> --%>
+			<%-- <td><button onclick="location.href='/phonebook2/pbc?action=updateForm&id=<%=vo.getPersonId()%>'">수정</button></td> --%>
 		</tr>
 	</table>
 	<br>
@@ -54,7 +59,7 @@ List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 	}
 	%>
 	<br>
-<a href="http://localhost:8088/phonebook1/writeForm.jsp">전화번호 추가하기</a>
+<a href="/phonebook1/writeForm.jsp">전화번호 추가하기</a>
 
 </body>
 </html>

@@ -80,12 +80,12 @@ public class PhonebookController extends HttpServlet {
 		} else if ("updateForm".equals(act)) {
 			System.out.println("action=updateForm");
 			//list 부터 id 식별자를 받아 form에 출력 
-			/*
 //			id 형변환
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 //			숫자로 변경한 id로 대상 식별
 			PersonVo personVo = new PhoneDao().getPerson(id);
+			System.out.println("personVo 출력: "+personVo);
 			
 //			Action으로 넘어온 값을 변경시킨후 JSP 페이지로 넘겨주기
 			request.setAttribute("psnVo", personVo);
@@ -93,7 +93,6 @@ public class PhonebookController extends HttpServlet {
 //			포워드 
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp");
 			rd.forward(request, response);
-			*/
 			
 			
 		} else if ("update".equals(act)) {
@@ -106,8 +105,8 @@ public class PhonebookController extends HttpServlet {
 			String company = request.getParameter("company");
 
 //			형변환
-			int personId = Integer.parseInt(request.getParameter(id));
-			
+			int personId = Integer.parseInt(request.getParameter("id"));
+			System.out.println("수정할번호 "+personId);
 //			vo로 만든다
 			PersonVo personVo = new PersonVo(personId, name, hp, company);
 			System.out.println(personVo);
@@ -118,12 +117,28 @@ public class PhonebookController extends HttpServlet {
 //			쿼리 처리
 			phoneDao.ContactsUpdate(personVo);
 			
-//			리다이렉트
+//			리다이렉트 - 포워드 방식 쓰면 에러남
 			response.sendRedirect("/phonebook2/pbc?action=list");
 			
 			
 		} else if ("delete".equals(act)) {
-			System.out.println("delete");
+			System.out.println("delete 시작");
+			
+//			연락처 id 가져오기 
+			String id = request.getParameter("id");
+
+//			형변환
+			int personId = Integer.parseInt(request.getParameter("id"));
+
+//			dao 메모리 올린다
+			PhoneDao phoneDao = new PhoneDao();
+
+//			쿼리 처리
+			phoneDao.ContactsRemove(personId);
+			
+			
+//			리다이렉트 쓸것 - 포워드 방식하면 에러 
+			response.sendRedirect("/phonebook2/pbc?action=list");
 			
 		} else {
 			System.out.println("파라미터 값 없음");

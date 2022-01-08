@@ -5,7 +5,7 @@
     
     <%
     //Action으로 넘어온 값을 변경시킨후 JSP 페이지로 받아오기
-    PersonVo personVo = (PersonVo)request.getAttribute("psvVo");
+    PersonVo personVo = (PersonVo)request.getAttribute("psnVo");
     //getAttribute 는 여러가지 객체를 get 할 수 있는데 Date 타입 객체를 받았다. Date 외에도, String, File 타입의 객체도 받을 수 있다
     
     %>
