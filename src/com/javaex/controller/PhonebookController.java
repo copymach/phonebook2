@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -38,7 +39,7 @@ public class PhonebookController extends HttpServlet {
 
 //			attribute란 Servlet간 공유하는 객체
 			request.setAttribute("pList", personList);
-//			PrintWriter out = response.getWriter(); out.println("<head>");
+			PrintWriter out = response.getWriter(); out.println("<head>");
 
 //			포워드
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
