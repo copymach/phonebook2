@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-// ,를 써서 2개를 임포트 할 수 있다.
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List , com.javaex.vo.PersonVo"%>
 
 <%
@@ -20,9 +19,9 @@ List<PersonVo> personList = (List<PersonVo>) request.getAttribute("pList");
 	<h1>전화번호 리스트 [phonebook2]</h1>
 
 	<P>
-		<a href="http://localhost:8088/phonebook2/pbc?action=writeForm">연락처 추가하기(절대경로)</a>
+		<a href="http://localhost:8088/phonebook2/pbc?action=writeForm">연락처 추가하기(절대경로 absolute path)</a>
 		<br>
-		<a href="/phonebook2/pbc?action=writeForm">연락처 추가하기(상대경로)</a>
+		<a href="/phonebook2/pbc?action=writeForm">연락처 추가하기(상대경로 relative path)</a>
 	</p>
 	<p>model2 방식으로 만든 전화번호부</p>
 	<p>입력한 정보 내역입니다.</p>

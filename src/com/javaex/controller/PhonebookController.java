@@ -150,6 +150,10 @@ public class PhonebookController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+//		출력 페이지 한글 표시 문제 해결
+		request.setCharacterEncoding("UTF-8");
+		
 		doGet(request, response);
 	}
 
